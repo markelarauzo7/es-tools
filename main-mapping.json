@@ -45,7 +45,7 @@
        }
     },
     "aliases" : {
-        "main-mapping": {}
+        "main-mapping-pruebas": {}
     },  
     "mappings":{  
        "_doc":{  
