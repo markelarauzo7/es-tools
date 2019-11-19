@@ -1,0 +1,15 @@
+---
+
+- name: check we have not forgotten any mandatory vars
+  assert:
+    that:
+      - task != ""
+  msg: "Task is mandatory"
+  tags: [ "check_vars" ]
+
+- name: Include task specific vars
+  include_vars:
+    file: vars/{{ task }}.yml
+  tags: always
+
+- include: "{{ task }}.yml"
