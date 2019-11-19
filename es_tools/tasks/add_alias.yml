@@ -1,6 +1,6 @@
 ---
 
-- name: Check that the index name is defined
+- name: Check variables are defined
   assert:
     that:
       - index is defined and index != ""

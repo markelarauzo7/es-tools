@@ -1,11 +1,10 @@
 ---
 
-- name: check we have not forgotten any mandatory vars
+- name: Check task has been provided
   assert:
     that:
       - task != ""
-      - index != ""
-    msg: "Task and index are mandatory"
+    msg: "Task is mandatory"
   tags: [ "check_vars" ]
 
 - name: Include task specific vars

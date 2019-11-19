@@ -1,0 +1,26 @@
+---
+
+endpoint: "{{ cluster_addr }}/_aliases"
+# query: '{
+#     "settings" : { 
+#        "index" : {
+#             "number_of_shards" : "{{ shards }}",
+#             "number_of_replicas" : {{ replicas }}
+#         }
+#     }
+# }'
+
+query: '{
+  "actions": [
+    { "remove": {
+        "alias": "photoshooter_docs",
+        "index": "photoshooter"
+    }},
+    { "add": {
+        "alias": "photoshooter_docs",
+        "index": "photoshooter_v2"
+    }}
+  ]
+}'
+
+# Get all aliases for index: GET /index/_alias/*
