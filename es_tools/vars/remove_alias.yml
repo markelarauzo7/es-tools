@@ -1,0 +1,8 @@
+---
+
+endpoint: "{{ cluster_addr }}/_aliases"
+query: '{
+    "actions" : [
+        { "remove" : { "index" : "{{ index }}", "alias" : "{{ alias }}" } }
+    ]
+}'
