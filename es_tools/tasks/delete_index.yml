@@ -1,0 +1,7 @@
+---
+
+- name: Delete index
+  uri: 
+    url: "{{ endpoint }}"
+    method: DELETE
+    body_format: json

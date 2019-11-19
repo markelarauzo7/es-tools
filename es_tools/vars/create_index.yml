@@ -1,0 +1,15 @@
+---
+
+endpoint: "{{ cluster_addr }}/{{ index }}"
+# query: '{
+#     "settings" : { 
+#        "index" : {
+#             "number_of_shards" : "{{ shards }}",
+#             "number_of_replicas" : {{ replicas }}
+#         }
+#     }
+# }'
+# @todo add support for plain query
+query: "{{ lookup('file', mapping_file ) }}"
+
+#"{{ lookup('file','myvalues.json') }}"

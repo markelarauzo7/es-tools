@@ -4,7 +4,8 @@
   assert:
     that:
       - task != ""
-  msg: "Task is mandatory"
+      - index != ""
+    msg: "Task and index are mandatory"
   tags: [ "check_vars" ]
 
 - name: Include task specific vars
