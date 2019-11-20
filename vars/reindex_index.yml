@@ -1,0 +1,11 @@
+---
+
+endpoint: "{{ cluster_addr }}/_reindex"
+query: '{
+  "source": {
+    "index": "{{ source_index }}"
+  },
+  "dest": {
+    "index": "{{ dest_index }}"
+  }
+}'

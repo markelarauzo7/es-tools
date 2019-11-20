@@ -41,38 +41,45 @@ An optional section for the role authors to include contact information, or a we
 Create index
 
 ```
-ansible-playbook -i hosts -l test -e task=create_index -e index=prueba -e mapping_file=files/main-mapping.json es-tools.yml
+ansible-playbook -i tests/hosts -l test -e task=create_index -e index=prueba -e mapping_file=files/example-mapping.json tests/test.yml
 ```
 
 Delete index
 
 ```
-ansible-playbook -i hosts -l test -e task=delete_index -e index=prueba es-tools.yml
+ansible-playbook -i tests/hosts -l test -e task=delete_index -e index=prueba tests/test.yml
 ```
 
 List index
 
 ```
-ansible-playbook -i hosts -l test -e task=list_index es-tools.yml
+ansible-playbook -i tests/hosts -l test -e task=list_index tests/test.yml
 ```
 
 Add alias
 
 ```
-ansible-playbook -i hosts -l test -e task=add_alias -e index=prueba -e alias=test es-tools.yml
+ansible-playbook -i tests/hosts -l test -e task=add_alias -e index=prueba -e alias=test tests/test.yml
 ```
 
 Remove alias
 
 ```
-ansible-playbook -i hosts -l test -e task=remove_alias -e index=prueba -e alias=test es-tools.yml
+ansible-playbook -i tests/hosts -l test -e task=remove_alias -e index=prueba -e alias=test tests/test.yml
 ```
 
 Move alias
 
 ```
-ansible-playbook -i hosts -l test -e task=move_alias -e source_index=prueba -e dest_index=main-com -e alias=main-mapping-pruebas es-tools.yml
+ansible-playbook -i tests/hosts -l test -e task=move_alias -e source_index=prueba -e dest_index=main-com -e alias=main-mapping-pruebas tests/test.yml
 ```
+
+Reindex index
+
+```
+ansible-playbook -i tests/hosts -l test -e task=reindex_index -e source_index=main-com -e dest_index=prueba tests/test.yml
+```
+
 Create a ansible.cfg for pretty printing with:
 
 ```
@@ -86,12 +93,18 @@ Create a ansible.cfg for pretty printing with:
 Example playbook
 
 ```
-my-playbook.yaml:
+my-playbook.yml:
 
 - hosts: all
   roles:
-    - es_tools
+    - es-tools
 
 ansible-playbook -i hosts -l test -e task=create_index -e index=prueba -e mapping_file=files/main-mapping.json my-playbook.yml
 
+```
+
+Install
+
+```
+ansible-galaxy install git+https://github.com/markelarauzo7/es-tools --roles-path roles
 ```

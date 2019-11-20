@@ -1,4 +1,3 @@
 .vscode
-hosts
+tests/hosts
 python-env
-main-data.json

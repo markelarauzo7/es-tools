@@ -1,3 +1,18 @@
-#https://www.elastic.co/blog/reindex-is-coming
-#https://www.elastic.co/guide/en/elasticsearch/reference/6.7/docs-reindex.html
-# @todo to be implemented
+---
+- name: Check variables are defined
+  assert:
+    that:
+      - source_index is defined and source_index != ""
+      - dest_index is defined and dest_index != ""
+    msg: "source_index/dest_index is/are missing"
+  tags: [ "check_vars" ]
+
+- name: Reindex index
+  uri: 
+    url: "{{ endpoint }}"
+    method: POST
+    body: "{{ query }}"
+    body_format: json
+    # 30 minutes
+    timeout: 1800
+  delegate_to: localhost
