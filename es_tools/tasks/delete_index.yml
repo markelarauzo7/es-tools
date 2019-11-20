@@ -5,3 +5,4 @@
     url: "{{ endpoint }}"
     method: DELETE
     body_format: json
+  delegate_to: localhost

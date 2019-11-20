@@ -1,0 +1,12 @@
+---
+
+- name: List indexes
+  uri: 
+    url: "{{ endpoint }}"
+    method: GET
+    return_content: yes
+  register: result
+  delegate_to: localhost
+
+- debug:
+    msg: "{{ result['content'] }}"

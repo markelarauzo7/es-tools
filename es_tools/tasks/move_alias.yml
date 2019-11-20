@@ -1,14 +1,12 @@
 #https://stackoverflow.com/questions/29508955/elasticsearch-reindexing-your-data-with-zero-downtime
 
-- include: create_index.yml
-- include: add_bulk_data.yml
-
 - name: Check that the index name is defined
   assert:
     that:
-      - index is defined and index != ""
-      - mapping_file is defined and mapping_file != ""
-    msg: "index/mapping-file is/are missing"
+      - source_index is defined and source_index != ""
+      - dest_index is defined and dest_index != ""
+      - alias is defined and alias != ""
+    msg: "source_index/dest_index/alias is/are missing"
   tags: [ "check_vars" ]
 
 # - name: Check that the number of shards > 0
@@ -31,3 +29,4 @@
     method: POST
     body: "{{ query }}"
     body_format: json
+  delegate_to: localhost

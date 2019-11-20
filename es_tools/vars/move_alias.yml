@@ -1,0 +1,18 @@
+---
+
+endpoint: "{{ cluster_addr }}/_aliases"
+query: '{
+  "actions": [
+    { "remove": {
+        "alias": "{{ alias }}",
+        "index": "{{ source_index }}"
+    }},
+    { "add": {
+        "alias": "{{ alias }}",
+        "index": "{{ dest_index }}"
+    }}
+  ]
+}'
+
+
+# Get alias https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-get-alias.html

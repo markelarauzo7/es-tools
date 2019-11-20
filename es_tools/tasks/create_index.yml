@@ -28,3 +28,4 @@
     method: PUT
     body: "{{ query }}"
     body_format: json
+  delegate_to: localhost

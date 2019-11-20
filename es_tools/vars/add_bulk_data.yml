@@ -1,4 +1,0 @@
----
-
-endpoint: "{{ cluster_addr }}/{{ index }}/_doc/_bulk"
-query: "{{ lookup('file', data_file) }}"
