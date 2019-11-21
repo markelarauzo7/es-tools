@@ -18,7 +18,7 @@
     old_index: "{{ result.json.keys()[0] }}"
 
 - set_fact:
-    new_index: "{{ alias }}-{{ ansible_date_time.date }}_{{ ansible_date_time.iso8601_basic_short | lower }}"
+    new_index: "{{ alias }}-{{ ansible_date_time.iso8601_basic_short | lower }}"
 
 - set_fact:
     mapping_file: "{{ files_folder }}/{{ alias }}-mapping.json"
