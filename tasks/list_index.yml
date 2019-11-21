@@ -5,6 +5,7 @@
     url: "{{ endpoint }}"
     method: GET
     return_content: yes
+    validate_certs: "{{ validate_certs }}"
   register: result
   delegate_to: localhost
 

@@ -31,4 +31,5 @@
     method: PUT
     body: "{{ query }}"
     body_format: json
+    validate_certs: "{{ validate_certs }}"
   delegate_to: localhost

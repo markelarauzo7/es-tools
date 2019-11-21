@@ -15,4 +15,5 @@
     body_format: json
     # 30 minutes
     timeout: 1800
+    validate_certs: "{{ validate_certs }}"
   delegate_to: localhost

@@ -76,4 +76,5 @@
     url: "{{ delete_index_endpoint }}"
     method: DELETE
     body_format: json
+    validate_certs: "{{ validate_certs }}"
   delegate_to: localhost
