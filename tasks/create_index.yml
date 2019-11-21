@@ -33,3 +33,5 @@
     body_format: json
     validate_certs: "{{ validate_certs }}"
   delegate_to: localhost
+
+# @todo find a way to deal with multiple aliases. Adding an alias optional?
