@@ -1,0 +1,79 @@
+---
+
+- name: Check variables are defined
+  assert:
+    that:
+      - alias is defined and alias != ""
+    msg: "alias is missing"
+  tags: [ "check_vars" ]
+
+- name: Get index for given alias
+  uri: 
+    url: "{{ get_alias_endpoint }}"
+    method: GET
+  register: result
+  delegate_to: localhost
+
+- set_fact:
+    old_index: "{{ result.json.keys()[0] }}"
+
+- set_fact:
+    new_index: "{{ alias }}-{{ ansible_date_time.date }}_{{ ansible_date_time.iso8601_basic_short | lower }}"
+
+- set_fact:
+    mapping_file: "{{ files_folder }}/{{ alias }}-mapping.json"
+
+- name: Check variables are defined
+  assert:
+    that:
+      - new_index is defined and new_index != ""
+      - mapping_file is defined and mapping_file != ""
+    msg: "new_index/mapping_file is/are missing"
+
+- name: Create index {{ new_index }}
+  uri: 
+    url: "{{ create_index_endpoint }}"
+    method: PUT
+    body: "{{ create_index_query }}"
+    body_format: json
+  delegate_to: localhost
+
+- name: Check variables are defined
+  assert:
+    that:
+      - old_index is defined and old_index != ""
+      - new_index is defined and new_index != ""
+    msg: "old_index/new_index is/are missing"
+
+- name: Reindex {{ old_index }} into {{ new_index }}
+  uri: 
+    url: "{{ reindex_index_endpoint }}"
+    method: POST
+    body: "{{ reindex_index_query }}"
+    body_format: json
+    # 30 minutes
+    timeout: 1800
+  delegate_to: localhost
+
+- name: Check vars are defined
+  assert:
+    that:
+      - old_index is defined and old_index != ""
+      - new_index is defined and new_index != ""
+      - alias is defined and alias != ""
+    msg: "old_index/new_index/alias is/are missing"
+
+- name: Move alias
+  uri: 
+    url: "{{ move_alias_endpoint }}"
+    method: POST
+    body: "{{ move_alias_query }}"
+    body_format: json
+  delegate_to: localhost
+
+- name: Delete old index
+  uri: 
+    url: "{{ delete_index_endpoint }}"
+    method: DELETE
+    body_format: json
+  delegate_to: localhost

@@ -41,7 +41,7 @@ An optional section for the role authors to include contact information, or a we
 Create index
 
 ```
-ansible-playbook -i tests/hosts -l test -e task=create_index -e index=prueba -e mapping_file=files/example-mapping.json tests/test.yml
+ansible-playbook -i tests/hosts -l test -e task=create_index -e index=prueba -e mapping_file=example-mapping.json tests/test.yml
 ```
 
 Delete index
@@ -80,6 +80,13 @@ Reindex index
 ansible-playbook -i tests/hosts -l test -e task=reindex_index -e source_index=main-com -e dest_index=prueba tests/test.yml
 ```
 
+Recreate index
+
+```
+ansible-playbook -i tests/hosts -l test -e task=recreate_index -e alias=main-com tests/test.yml
+```
+
+
 Create a ansible.cfg for pretty printing with:
 
 ```
@@ -99,7 +106,7 @@ my-playbook.yml:
   roles:
     - es-tools
 
-ansible-playbook -i hosts -l test -e task=create_index -e index=prueba -e mapping_file=files/main-mapping.json my-playbook.yml
+ansible-playbook -i hosts -l test -e task=create_index -e index=prueba -e mapping_file=main-mapping.json my-playbook.yml
 
 ```
 

@@ -2,3 +2,4 @@
 
 cluster_port: 9200
 cluster_addr: "http://{{ inventory_hostname }}:{{ cluster_port }}"
+files_folder: files

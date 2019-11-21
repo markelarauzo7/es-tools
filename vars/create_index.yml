@@ -1,6 +1,6 @@
 ---
 
-endpoint: "{{ cluster_addr }}/{{ index }}"
+endpoint: "{{ cluster_addr }}/{{ index_override }}"
 # query: '{
 #     "settings" : { 
 #        "index" : {
@@ -10,6 +10,7 @@ endpoint: "{{ cluster_addr }}/{{ index }}"
 #     }
 # }'
 # @todo add support for plain query
-query: "{{ lookup('file', mapping_file ) }}"
+filepath: "{{ files_folder }}/{{ mapping_file }}"
+query: "{{ lookup('file', filepath ) }}"
 
 #"{{ lookup('file','myvalues.json') }}"

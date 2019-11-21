@@ -5,8 +5,11 @@
     that:
       - index is defined and index != ""
       - mapping_file is defined and mapping_file != ""
-    msg: "index/mapping-file is/are missing"
+    msg: "index/mapping_file is/are missing"
   tags: [ "check_vars" ]
+
+- set_fact:
+    index_override: "{{ index }}-{{ ansible_date_time.iso8601_basic_short | lower }}"
 
 # - name: Check that the number of shards > 0
 #   assert:

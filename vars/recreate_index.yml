@@ -1,0 +1,34 @@
+---
+
+get_alias_endpoint: "{{ cluster_addr }}/_alias/{{ alias }}"
+
+create_index_endpoint: "{{ cluster_addr }}/{{ new_index }}"
+create_index_query: "{{ lookup('file', mapping_file ) }}"
+
+
+reindex_index_endpoint: "{{ cluster_addr }}/_reindex"
+reindex_index_query: '{
+  "source": {
+    "index": "{{ old_index }}"
+  },
+  "dest": {
+    "index": "{{ new_index }}"
+  }
+}'
+
+
+move_alias_endpoint: "{{ cluster_addr }}/_aliases"
+move_alias_query: '{
+  "actions": [
+    { "remove": {
+        "alias": "{{ alias }}",
+        "index": "{{ old_index }}"
+    }},
+    { "add": {
+        "alias": "{{ alias }}",
+        "index": "{{ new_index }}"
+    }}
+  ]
+}'
+
+delete_index_endpoint: "{{ cluster_addr }}/{{ old_index }}"

@@ -1,6 +1,6 @@
 #https://stackoverflow.com/questions/29508955/elasticsearch-reindexing-your-data-with-zero-downtime
 
-- name: Check that the index name is defined
+- name: Check vars are defined
   assert:
     that:
       - source_index is defined and source_index != ""
@@ -23,7 +23,7 @@
 #     msg: "The number of replicas must be >= 0, got {{ replicas }}"
 #   tags: [ "check_vars" ]
 
-- name: Create index
+- name: Move alias
   uri: 
     url: "{{ endpoint }}"
     method: POST
