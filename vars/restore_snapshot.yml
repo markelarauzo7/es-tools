@@ -1,0 +1,7 @@
+---
+    close_endpoint: "{{ cluster_addr }}/_all/_close" 
+    endpoint: "{{ cluster_addr }}/_snapshot/{{ repository }}/{{ snapshot }}/_restore"
+    query: '{
+        "ignore_unavailable": false,
+        "include_global_state": true,
+      }'

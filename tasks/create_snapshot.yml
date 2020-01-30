@@ -1,0 +1,22 @@
+---
+# https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-take-snapshot.html
+    - name: Check variables are defined
+      assert:
+        that:
+          - repository is defined and repository != ""
+          - snapshot is defined and snapshot != ""
+        msg: "repository/snapshot is/are missing"
+      tags: [ "check_vars" ]
+    
+    - set_fact:
+        snapshot_override: "{{ snapshot }}-{{ ansible_date_time.iso8601_basic_short | lower }}"
+
+    - name: Create snapshot
+      uri: 
+        url: "{{ endpoint }}"
+        method: PUT
+        body: "{{ query }}"
+        body_format: json
+        validate_certs: "{{ validate_certs }}"
+      delegate_to: localhost
+    

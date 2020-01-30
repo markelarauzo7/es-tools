@@ -1,0 +1,9 @@
+---
+
+    endpoint: "{{ cluster_addr }}/_snapshot/{{ repository }}"
+    query: '{
+        "type": "fs",
+        "settings": {
+          "location": {{ location }}
+        }
+      }'

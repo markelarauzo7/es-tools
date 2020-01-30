@@ -1,0 +1,20 @@
+---
+
+    - name: Check variables are defined
+      assert:
+        that:
+        - repository is defined and repository != ""
+        msg: "repository is/are missing"
+      tags: [ "check_vars" ]
+
+    - name: List snapshots
+      uri: 
+        url: "{{ endpoint }}"
+        method: GET
+        return_content: yes
+        validate_certs: "{{ validate_certs }}"
+      register: result
+      delegate_to: localhost
+    
+    - debug:
+        msg: "{{ result['content'] }}"

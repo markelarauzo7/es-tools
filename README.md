@@ -86,6 +86,30 @@ Recreate index
 ansible-playbook -i tests/hosts -l test -e task=recreate_index -e alias=main-com tests/test.yml
 ```
 
+Create snapshot
+
+```
+ansible-playbook -i tests/hosts -l test -e task=create_snapshot -e repository=repository -e snapshot=snapshot tests/test.yml
+```
+
+List snapshot
+
+```
+ansible-playbook -i tests/hosts -l test -e task=list_snapshot -e repository=repository tests/test.yml
+```
+
+Delete snapshot
+
+```
+ansible-playbook -i tests/hosts -l test -e task=delete_snapshot -e repository=repository -e snapshot=snapshot tests/test.yml
+```
+
+Restore snapshot
+
+```
+ansible-playbook -i tests/hosts -l test -e task=restore_snapshot -e repository=repository -e snapshot=snapshot tests/test.yml
+```
+
 
 Create a ansible.cfg for pretty printing with:
 

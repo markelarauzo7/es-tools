@@ -1,0 +1,21 @@
+---
+
+    - name: Check variables are defined
+      assert:
+        that:
+        - repository is defined and repository != ""
+        - snapshot is defined and snapshot != ""
+        msg: "repository/snapshot is/are missing"
+      tags: [ "check_vars" ]
+
+    - name: List snapshots
+      uri: 
+        url: "{{ endpoint }}"
+        method: DELETE
+        return_content: yes
+        validate_certs: "{{ validate_certs }}"
+      register: result
+      delegate_to: localhost
+    
+    - debug:
+        msg: "{{ result['content'] }}"

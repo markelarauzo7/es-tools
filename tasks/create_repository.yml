@@ -1,0 +1,19 @@
+---
+# https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-register-repository.html
+    - name: Check variables are defined
+      assert:
+        that:
+          - repository is defined and repository != ""
+          - location is defined and location != ""
+        msg: "repository/location is/are missing"
+      tags: [ "check_vars" ]
+    
+    
+    - name: Create repository
+      uri: 
+        url: "{{ endpoint }}"
+        method: PUT
+        body: "{{ query }}"
+        body_format: json
+        validate_certs: "{{ validate_certs }}"
+      delegate_to: localhost

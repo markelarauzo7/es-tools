@@ -1,0 +1,25 @@
+---
+    # https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-restore-snapshot.html
+    - name: Check variables are defined
+      assert:
+        that:
+            - repository is defined and repository != ""
+            - snapshot is defined and snapshot != ""
+        msg: "repository/snapshot is/are missing"
+      tags: [ "check_vars" ]
+
+    - name: close all indexes
+      uri: 
+        url: "{{ close_endpoint }}"
+        method: POST
+        validate_certs: "{{ validate_certs }}"
+      delegate_to: localhost 
+
+    - name: restore snapshot
+      uri: 
+        url: "{{ endpoint }}"
+        method: POST
+        body: "{{ query }}"
+        body_format: json
+        validate_certs: "{{ validate_certs }}"
+      delegate_to: localhost
