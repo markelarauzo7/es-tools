@@ -86,6 +86,12 @@ Recreate index
 ansible-playbook -i tests/hosts -l test -e task=recreate_index -e alias=main-com tests/test.yml
 ```
 
+Create repository
+
+```
+ansible-playbook -i tests/hosts -l test -e task=create_repository -e repository=repository -e location=location tests/test.yml
+```
+
 Create snapshot
 
 ```

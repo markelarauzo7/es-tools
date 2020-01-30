@@ -4,6 +4,6 @@
     query: '{
         "type": "fs",
         "settings": {
-          "location": {{ location }}
+          "location": "{{ location }}"
         }
       }'

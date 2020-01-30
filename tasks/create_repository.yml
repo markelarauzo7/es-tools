@@ -8,7 +8,6 @@
         msg: "repository/location is/are missing"
       tags: [ "check_vars" ]
     
-    
     - name: Create repository
       uri: 
         url: "{{ endpoint }}"
