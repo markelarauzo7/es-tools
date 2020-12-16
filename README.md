@@ -92,6 +92,12 @@ Create repository
 ansible-playbook -i tests/hosts -l test -e task=create_repository -e repository=repository -e location=location tests/test.yml
 ```
 
+List repository
+
+```
+ansible-playbook -i tests/hosts -l test -e task=list_repository tests/test.yml
+```
+
 Create snapshot
 
 ```
