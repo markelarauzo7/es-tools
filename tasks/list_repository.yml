@@ -1,6 +1,6 @@
 ---
 
-- name: List indexes
+- name: List repositories
   uri: 
     url: "{{ endpoint }}"
     method: GET
